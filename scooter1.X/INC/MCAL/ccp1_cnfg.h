@@ -1,0 +1,19 @@
+/* 
+ * File:   ccp1_config.h
+ * Author: Lenovo
+ *
+
+ */
+
+#ifndef CCP1_CONFIG_H
+#define	CCP1_CONFIG_H
+#define CCP_INTERRUPTS 0
+#define INTERRUPT_ENABLE 1
+#define CCP_CFG_CAPTURE_MODE_SELECTED  0    
+#define CCP_CFG_COMPARE_MODE_SELECTED  1
+#define CCP_CFG_PWM_MODE_SELECTED       2
+#define CCP1_CFG_SELECTED_MODE  CCP_CFG_PWM_MODE_SELECTED
+#define CCP2_CFG_SELECTED_MODE  CCP_CFG_PWM_MODE_SELECTED
+
+#endif	/* CCP1_CONFIG_H */
+

@@ -1,0 +1,1276 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"13 MAin_scooter.c
+[; ;MAin_scooter.c: 13: ccp_t motor_sp={.ccp1_mode=CCP_PWM_MODE_SELECTED,
+[c E2861 0 1 2 .. ]
+[n E2861 . CCP1_CCP2_TIMER3 CCP1_TIMER1_CCP2_TIMER3 CCP1_CCP2_TIMER1  ]
+"59 ./src/ECU/../../INC/MCAL/GPIO.h
+[s S265 :3 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S265 . pin port direction logic ]
+"13 MAin_scooter.c
+[; ;MAin_scooter.c: 13: ccp_t motor_sp={.ccp1_mode=CCP_PWM_MODE_SELECTED,
+[c E2856 0 1 2 .. ]
+[n E2856 . CCP_CAPTURE_MODE_SELECTED CCP_COMPARE_MODE_SELECTED CCP_PWM_MODE_SELECTED  ]
+[c E2866 0 1 .. ]
+[n E2866 . CCP1_INST CCP2_INST  ]
+"83 ./INC/MCAL/CCP.h
+[; ;./INC/MCAL/CCP.h: 83: typedef struct{
+[s S278 `ui 1 `uc 1 `uc 1 `E2861 1 `S265 1 `E2856 1 `uc 1 `E2866 1 ]
+[n S278 . pwm_frequncy timer2_postscaler_value timer2_prescaler_value ccp_capture_timer ccp_pin ccp1_mode ccp_mode_varient ccp_inst ]
+"13 MAin_scooter.c
+[; ;MAin_scooter.c: 13: ccp_t motor_sp={.ccp1_mode=CCP_PWM_MODE_SELECTED,
+[c E2275 0 1 2 3 4 5 6 7 .. ]
+[n E2275 . PIN0 PIN1 PIN2 PIN3 PIN4 PIN5 PIN6 PIN7  ]
+[c E2285 0 1 2 3 4 .. ]
+[n E2285 . PORTA_INDEX PORTB_INDEX PORTC_INDEX PORTD_INDEX PORTE_INDEX  ]
+"14 ./INC/ECU/motor.h
+[; ;./INC/ECU/motor.h: 14: typedef struct {
+[s S268 :4 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S268 . port_name pin DC_motor_Pin_status ]
+"21
+[; ;./INC/ECU/motor.h: 21: typedef struct {
+[s S269 `S268 -> 2 `i ]
+[n S269 . Motor_pins ]
+"24 MAin_scooter.c
+[; ;MAin_scooter.c: 24: DC_motor_t motor_1={
+[c E2267 0 1 .. ]
+[n E2267 . LOW HIGH  ]
+"39
+[; ;MAin_scooter.c: 39:  segment_t myseg ={.Segment_Pins[0].pin=PIN0,
+[c E2843 0 1 .. ]
+[n E2843 . COMMON_CATHODE COMMON_ANODE  ]
+"19 ./src/ECU/seven_seg.h
+[; ;./src/ECU/seven_seg.h: 19: { pin_config_t Segment_Pins[4];
+[s S277 `S265 -> 4 `i `E2843 1 ]
+[n S277 . Segment_Pins segment_type ]
+"50 MAin_scooter.c
+[; ;MAin_scooter.c: 50: button_t LIGHTS_btn_ON = {
+[c E2322 0 1 .. ]
+[n E2322 . BUTTON_PRESSED BUTTON_RELEASED  ]
+[c E2326 0 1 .. ]
+[n E2326 . BUTTON_ACTIVE_HIGH BUTTON_ACTIVE_LOW  ]
+"17 ./INC/ECU/button.h
+[; ;./INC/ECU/button.h: 17: typedef struct{
+[s S266 `S265 1 `E2322 1 `E2326 1 ]
+[n S266 . button_pin button_state button_connection ]
+"50 MAin_scooter.c
+[; ;MAin_scooter.c: 50: button_t LIGHTS_btn_ON = {
+[c E2271 0 1 .. ]
+[n E2271 . OUTPUT INPUT  ]
+"19 ./INC/ECU/HAL_LED.h
+[; ;./INC/ECU/HAL_LED.h: 19: typedef struct {
+[s S267 :4 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S267 . port_name pin led_status ]
+[p mainexit ]
+"17 ./main.h
+[; ;./main.h: 17: void system_init();
+[v _system_init `(v ~T0 @X0 0 e? ]
+"25 ./INC/ECU/button.h
+[; ;./INC/ECU/button.h: 25: Std_ReturnType button_read_state(const button_t *btn, button_state_t *btn_state);
+[v _button_read_state `(uc ~T0 @X0 0 ef2`*CS266`*E2322 ]
+"28 ./INC/ECU/HAL_LED.h
+[; ;./INC/ECU/HAL_LED.h: 28: Std_ReturnType led_turn_on(const led_t *led);
+[v _led_turn_on `(uc ~T0 @X0 0 ef1`*CS267 ]
+"29
+[; ;./INC/ECU/HAL_LED.h: 29: Std_ReturnType led_turn_off(const led_t *led);
+[v _led_turn_off `(uc ~T0 @X0 0 ef1`*CS267 ]
+"15 ./main.h
+[; ;./main.h: 15: void scooter_forward();
+[v _scooter_forward `(v ~T0 @X0 0 e? ]
+"16
+[; ;./main.h: 16:  void scooter_backward();
+[v _scooter_backward `(v ~T0 @X0 0 e? ]
+"18
+[; ;./main.h: 18: void scooter_stop();
+[v _scooter_stop `(v ~T0 @X0 0 e? ]
+"131 ./INC/MCAL/CCP.h
+[; ;./INC/MCAL/CCP.h: 131: Std_ReturnType CCP_PWM_Stop(const ccp_t *_ccp_obj);
+[v _CCP_PWM_Stop `(uc ~T0 @X0 0 ef1`*CS278 ]
+"130
+[; ;./INC/MCAL/CCP.h: 130: Std_ReturnType CCP_PWM_Start(const ccp_t *_ccp_obj);
+[v _CCP_PWM_Start `(uc ~T0 @X0 0 ef1`*CS278 ]
+"129
+[; ;./INC/MCAL/CCP.h: 129: Std_ReturnType CCP_PWM_Set_Duty(const ccp_t *_ccp_obj, const uint8 _duty);
+[v _CCP_PWM_Set_Duty `(uc ~T0 @X0 0 ef2`*CS278`Cuc ]
+"25 ./src/ECU/seven_seg.h
+[; ;./src/ECU/seven_seg.h: 25: Std_ReturnType segment_write(const segment_t *seg,uint8 data);
+[v _segment_write `(uc ~T0 @X0 0 ef2`*CS277`uc ]
+"24 ./INC/ECU/button.h
+[; ;./INC/ECU/button.h: 24: Std_ReturnType button_initialize(const button_t *btn);
+[v _button_initialize `(uc ~T0 @X0 0 ef1`*CS266 ]
+"27 ./INC/ECU/HAL_LED.h
+[; ;./INC/ECU/HAL_LED.h: 27: Std_ReturnType led_initialize(const led_t *led);
+[v _led_initialize `(uc ~T0 @X0 0 ef1`*CS267 ]
+"25 ./INC/ECU/motor.h
+[; ;./INC/ECU/motor.h: 25: Std_ReturnType DC_motor_initialize(const DC_motor_t *motor);
+[v _DC_motor_initialize `(uc ~T0 @X0 0 ef1`*CS269 ]
+"24 ./src/ECU/seven_seg.h
+[; ;./src/ECU/seven_seg.h: 24: Std_ReturnType segment_intilaize( segment_t *seg);
+[v _segment_intilaize `(uc ~T0 @X0 0 ef1`*S277 ]
+"115 ./INC/MCAL/CCP.h
+[; ;./INC/MCAL/CCP.h: 115: Std_ReturnType CCP_Init(const ccp_t *_ccp_obj);
+[v _CCP_Init `(uc ~T0 @X0 0 ef1`*CS278 ]
+"26 ./INC/ECU/motor.h
+[; ;./INC/ECU/motor.h: 26: Std_ReturnType DC_motor_MOve_clock_Wise(const DC_motor_t *motor);
+[v _DC_motor_MOve_clock_Wise `(uc ~T0 @X0 0 ef1`*CS269 ]
+"27
+[; ;./INC/ECU/motor.h: 27: Std_ReturnType DC_motor_MOve_Anti_clock_Wise(const DC_motor_t *motor);
+[v _DC_motor_MOve_Anti_clock_Wise `(uc ~T0 @X0 0 ef1`*CS269 ]
+"28
+[; ;./INC/ECU/motor.h: 28: Std_ReturnType DC_motor_Stop(const DC_motor_t *motor);
+[v _DC_motor_Stop `(uc ~T0 @X0 0 ef1`*CS269 ]
+"55 C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 55: __asm("PORTA equ 0F80h");
+[; <" PORTA equ 0F80h ;# ">
+"192
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 192: __asm("PORTB equ 0F81h");
+[; <" PORTB equ 0F81h ;# ">
+"363
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 363: __asm("PORTC equ 0F82h");
+[; <" PORTC equ 0F82h ;# ">
+"538
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 538: __asm("PORTD equ 0F83h");
+[; <" PORTD equ 0F83h ;# ">
+"680
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 680: __asm("PORTE equ 0F84h");
+[; <" PORTE equ 0F84h ;# ">
+"883
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 883: __asm("LATA equ 0F89h");
+[; <" LATA equ 0F89h ;# ">
+"995
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 995: __asm("LATB equ 0F8Ah");
+[; <" LATB equ 0F8Ah ;# ">
+"1107
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 1107: __asm("LATC equ 0F8Bh");
+[; <" LATC equ 0F8Bh ;# ">
+"1219
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 1219: __asm("LATD equ 0F8Ch");
+[; <" LATD equ 0F8Ch ;# ">
+"1331
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 1331: __asm("LATE equ 0F8Dh");
+[; <" LATE equ 0F8Dh ;# ">
+"1383
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 1383: __asm("TRISA equ 0F92h");
+[; <" TRISA equ 0F92h ;# ">
+"1388
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 1388: __asm("DDRA equ 0F92h");
+[; <" DDRA equ 0F92h ;# ">
+"1605
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 1605: __asm("TRISB equ 0F93h");
+[; <" TRISB equ 0F93h ;# ">
+"1610
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 1610: __asm("DDRB equ 0F93h");
+[; <" DDRB equ 0F93h ;# ">
+"1827
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 1827: __asm("TRISC equ 0F94h");
+[; <" TRISC equ 0F94h ;# ">
+"1832
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 1832: __asm("DDRC equ 0F94h");
+[; <" DDRC equ 0F94h ;# ">
+"2049
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2049: __asm("TRISD equ 0F95h");
+[; <" TRISD equ 0F95h ;# ">
+"2054
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2054: __asm("DDRD equ 0F95h");
+[; <" DDRD equ 0F95h ;# ">
+"2271
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2271: __asm("TRISE equ 0F96h");
+[; <" TRISE equ 0F96h ;# ">
+"2276
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2276: __asm("DDRE equ 0F96h");
+[; <" DDRE equ 0F96h ;# ">
+"2435
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2435: __asm("OSCTUNE equ 0F9Bh");
+[; <" OSCTUNE equ 0F9Bh ;# ">
+"2500
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2500: __asm("PIE1 equ 0F9Dh");
+[; <" PIE1 equ 0F9Dh ;# ">
+"2577
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2577: __asm("PIR1 equ 0F9Eh");
+[; <" PIR1 equ 0F9Eh ;# ">
+"2654
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2654: __asm("IPR1 equ 0F9Fh");
+[; <" IPR1 equ 0F9Fh ;# ">
+"2731
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2731: __asm("PIE2 equ 0FA0h");
+[; <" PIE2 equ 0FA0h ;# ">
+"2797
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2797: __asm("PIR2 equ 0FA1h");
+[; <" PIR2 equ 0FA1h ;# ">
+"2863
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2863: __asm("IPR2 equ 0FA2h");
+[; <" IPR2 equ 0FA2h ;# ">
+"2929
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2929: __asm("EECON1 equ 0FA6h");
+[; <" EECON1 equ 0FA6h ;# ">
+"2995
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 2995: __asm("EECON2 equ 0FA7h");
+[; <" EECON2 equ 0FA7h ;# ">
+"3002
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3002: __asm("EEDATA equ 0FA8h");
+[; <" EEDATA equ 0FA8h ;# ">
+"3009
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3009: __asm("EEADR equ 0FA9h");
+[; <" EEADR equ 0FA9h ;# ">
+"3016
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3016: __asm("EEADRH equ 0FAAh");
+[; <" EEADRH equ 0FAAh ;# ">
+"3023
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3023: __asm("RCSTA equ 0FABh");
+[; <" RCSTA equ 0FABh ;# ">
+"3028
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3028: __asm("RCSTA1 equ 0FABh");
+[; <" RCSTA1 equ 0FABh ;# ">
+"3233
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3233: __asm("TXSTA equ 0FACh");
+[; <" TXSTA equ 0FACh ;# ">
+"3238
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3238: __asm("TXSTA1 equ 0FACh");
+[; <" TXSTA1 equ 0FACh ;# ">
+"3489
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3489: __asm("TXREG equ 0FADh");
+[; <" TXREG equ 0FADh ;# ">
+"3494
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3494: __asm("TXREG1 equ 0FADh");
+[; <" TXREG1 equ 0FADh ;# ">
+"3501
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3501: __asm("RCREG equ 0FAEh");
+[; <" RCREG equ 0FAEh ;# ">
+"3506
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3506: __asm("RCREG1 equ 0FAEh");
+[; <" RCREG1 equ 0FAEh ;# ">
+"3513
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3513: __asm("SPBRG equ 0FAFh");
+[; <" SPBRG equ 0FAFh ;# ">
+"3518
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3518: __asm("SPBRG1 equ 0FAFh");
+[; <" SPBRG1 equ 0FAFh ;# ">
+"3525
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3525: __asm("SPBRGH equ 0FB0h");
+[; <" SPBRGH equ 0FB0h ;# ">
+"3532
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3532: __asm("T3CON equ 0FB1h");
+[; <" T3CON equ 0FB1h ;# ">
+"3644
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3644: __asm("TMR3 equ 0FB2h");
+[; <" TMR3 equ 0FB2h ;# ">
+"3651
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3651: __asm("TMR3L equ 0FB2h");
+[; <" TMR3L equ 0FB2h ;# ">
+"3658
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3658: __asm("TMR3H equ 0FB3h");
+[; <" TMR3H equ 0FB3h ;# ">
+"3665
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3665: __asm("CMCON equ 0FB4h");
+[; <" CMCON equ 0FB4h ;# ">
+"3755
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3755: __asm("CVRCON equ 0FB5h");
+[; <" CVRCON equ 0FB5h ;# ">
+"3834
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3834: __asm("ECCP1AS equ 0FB6h");
+[; <" ECCP1AS equ 0FB6h ;# ">
+"3916
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3916: __asm("PWM1CON equ 0FB7h");
+[; <" PWM1CON equ 0FB7h ;# ">
+"3986
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3986: __asm("BAUDCON equ 0FB8h");
+[; <" BAUDCON equ 0FB8h ;# ">
+"3991
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 3991: __asm("BAUDCTL equ 0FB8h");
+[; <" BAUDCTL equ 0FB8h ;# ">
+"4158
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4158: __asm("CCP2CON equ 0FBAh");
+[; <" CCP2CON equ 0FBAh ;# ">
+"4237
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4237: __asm("CCPR2 equ 0FBBh");
+[; <" CCPR2 equ 0FBBh ;# ">
+"4244
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4244: __asm("CCPR2L equ 0FBBh");
+[; <" CCPR2L equ 0FBBh ;# ">
+"4251
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4251: __asm("CCPR2H equ 0FBCh");
+[; <" CCPR2H equ 0FBCh ;# ">
+"4258
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4258: __asm("CCP1CON equ 0FBDh");
+[; <" CCP1CON equ 0FBDh ;# ">
+"4355
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4355: __asm("CCPR1 equ 0FBEh");
+[; <" CCPR1 equ 0FBEh ;# ">
+"4362
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4362: __asm("CCPR1L equ 0FBEh");
+[; <" CCPR1L equ 0FBEh ;# ">
+"4369
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4369: __asm("CCPR1H equ 0FBFh");
+[; <" CCPR1H equ 0FBFh ;# ">
+"4376
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4376: __asm("ADCON2 equ 0FC0h");
+[; <" ADCON2 equ 0FC0h ;# ">
+"4447
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4447: __asm("ADCON1 equ 0FC1h");
+[; <" ADCON1 equ 0FC1h ;# ">
+"4532
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4532: __asm("ADCON0 equ 0FC2h");
+[; <" ADCON0 equ 0FC2h ;# ">
+"4651
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4651: __asm("ADRES equ 0FC3h");
+[; <" ADRES equ 0FC3h ;# ">
+"4658
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4658: __asm("ADRESL equ 0FC3h");
+[; <" ADRESL equ 0FC3h ;# ">
+"4665
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4665: __asm("ADRESH equ 0FC4h");
+[; <" ADRESH equ 0FC4h ;# ">
+"4672
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4672: __asm("SSPCON2 equ 0FC5h");
+[; <" SSPCON2 equ 0FC5h ;# ">
+"4734
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4734: __asm("SSPCON1 equ 0FC6h");
+[; <" SSPCON1 equ 0FC6h ;# ">
+"4804
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 4804: __asm("SSPSTAT equ 0FC7h");
+[; <" SSPSTAT equ 0FC7h ;# ">
+"5025
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5025: __asm("SSPADD equ 0FC8h");
+[; <" SSPADD equ 0FC8h ;# ">
+"5032
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5032: __asm("SSPBUF equ 0FC9h");
+[; <" SSPBUF equ 0FC9h ;# ">
+"5039
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5039: __asm("T2CON equ 0FCAh");
+[; <" T2CON equ 0FCAh ;# ">
+"5110
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5110: __asm("PR2 equ 0FCBh");
+[; <" PR2 equ 0FCBh ;# ">
+"5115
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5115: __asm("MEMCON equ 0FCBh");
+[; <" MEMCON equ 0FCBh ;# ">
+"5220
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5220: __asm("TMR2 equ 0FCCh");
+[; <" TMR2 equ 0FCCh ;# ">
+"5227
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5227: __asm("T1CON equ 0FCDh");
+[; <" T1CON equ 0FCDh ;# ">
+"5330
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5330: __asm("TMR1 equ 0FCEh");
+[; <" TMR1 equ 0FCEh ;# ">
+"5337
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5337: __asm("TMR1L equ 0FCEh");
+[; <" TMR1L equ 0FCEh ;# ">
+"5344
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5344: __asm("TMR1H equ 0FCFh");
+[; <" TMR1H equ 0FCFh ;# ">
+"5351
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5351: __asm("RCON equ 0FD0h");
+[; <" RCON equ 0FD0h ;# ">
+"5484
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5484: __asm("WDTCON equ 0FD1h");
+[; <" WDTCON equ 0FD1h ;# ">
+"5512
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5512: __asm("HLVDCON equ 0FD2h");
+[; <" HLVDCON equ 0FD2h ;# ">
+"5517
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5517: __asm("LVDCON equ 0FD2h");
+[; <" LVDCON equ 0FD2h ;# ">
+"5782
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5782: __asm("OSCCON equ 0FD3h");
+[; <" OSCCON equ 0FD3h ;# ">
+"5859
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5859: __asm("T0CON equ 0FD5h");
+[; <" T0CON equ 0FD5h ;# ">
+"5936
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5936: __asm("TMR0 equ 0FD6h");
+[; <" TMR0 equ 0FD6h ;# ">
+"5943
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5943: __asm("TMR0L equ 0FD6h");
+[; <" TMR0L equ 0FD6h ;# ">
+"5950
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5950: __asm("TMR0H equ 0FD7h");
+[; <" TMR0H equ 0FD7h ;# ">
+"5957
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 5957: __asm("STATUS equ 0FD8h");
+[; <" STATUS equ 0FD8h ;# ">
+"6028
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6028: __asm("FSR2 equ 0FD9h");
+[; <" FSR2 equ 0FD9h ;# ">
+"6035
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6035: __asm("FSR2L equ 0FD9h");
+[; <" FSR2L equ 0FD9h ;# ">
+"6042
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6042: __asm("FSR2H equ 0FDAh");
+[; <" FSR2H equ 0FDAh ;# ">
+"6049
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6049: __asm("PLUSW2 equ 0FDBh");
+[; <" PLUSW2 equ 0FDBh ;# ">
+"6056
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6056: __asm("PREINC2 equ 0FDCh");
+[; <" PREINC2 equ 0FDCh ;# ">
+"6063
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6063: __asm("POSTDEC2 equ 0FDDh");
+[; <" POSTDEC2 equ 0FDDh ;# ">
+"6070
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6070: __asm("POSTINC2 equ 0FDEh");
+[; <" POSTINC2 equ 0FDEh ;# ">
+"6077
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6077: __asm("INDF2 equ 0FDFh");
+[; <" INDF2 equ 0FDFh ;# ">
+"6084
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6084: __asm("BSR equ 0FE0h");
+[; <" BSR equ 0FE0h ;# ">
+"6091
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6091: __asm("FSR1 equ 0FE1h");
+[; <" FSR1 equ 0FE1h ;# ">
+"6098
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6098: __asm("FSR1L equ 0FE1h");
+[; <" FSR1L equ 0FE1h ;# ">
+"6105
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6105: __asm("FSR1H equ 0FE2h");
+[; <" FSR1H equ 0FE2h ;# ">
+"6112
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6112: __asm("PLUSW1 equ 0FE3h");
+[; <" PLUSW1 equ 0FE3h ;# ">
+"6119
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6119: __asm("PREINC1 equ 0FE4h");
+[; <" PREINC1 equ 0FE4h ;# ">
+"6126
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6126: __asm("POSTDEC1 equ 0FE5h");
+[; <" POSTDEC1 equ 0FE5h ;# ">
+"6133
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6133: __asm("POSTINC1 equ 0FE6h");
+[; <" POSTINC1 equ 0FE6h ;# ">
+"6140
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6140: __asm("INDF1 equ 0FE7h");
+[; <" INDF1 equ 0FE7h ;# ">
+"6147
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6147: __asm("WREG equ 0FE8h");
+[; <" WREG equ 0FE8h ;# ">
+"6159
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6159: __asm("FSR0 equ 0FE9h");
+[; <" FSR0 equ 0FE9h ;# ">
+"6166
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6166: __asm("FSR0L equ 0FE9h");
+[; <" FSR0L equ 0FE9h ;# ">
+"6173
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6173: __asm("FSR0H equ 0FEAh");
+[; <" FSR0H equ 0FEAh ;# ">
+"6180
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6180: __asm("PLUSW0 equ 0FEBh");
+[; <" PLUSW0 equ 0FEBh ;# ">
+"6187
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6187: __asm("PREINC0 equ 0FECh");
+[; <" PREINC0 equ 0FECh ;# ">
+"6194
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6194: __asm("POSTDEC0 equ 0FEDh");
+[; <" POSTDEC0 equ 0FEDh ;# ">
+"6201
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6201: __asm("POSTINC0 equ 0FEEh");
+[; <" POSTINC0 equ 0FEEh ;# ">
+"6208
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6208: __asm("INDF0 equ 0FEFh");
+[; <" INDF0 equ 0FEFh ;# ">
+"6215
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6215: __asm("INTCON3 equ 0FF0h");
+[; <" INTCON3 equ 0FF0h ;# ">
+"6307
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6307: __asm("INTCON2 equ 0FF1h");
+[; <" INTCON2 equ 0FF1h ;# ">
+"6377
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6377: __asm("INTCON equ 0FF2h");
+[; <" INTCON equ 0FF2h ;# ">
+"6494
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6494: __asm("PROD equ 0FF3h");
+[; <" PROD equ 0FF3h ;# ">
+"6501
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6501: __asm("PRODL equ 0FF3h");
+[; <" PRODL equ 0FF3h ;# ">
+"6508
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6508: __asm("PRODH equ 0FF4h");
+[; <" PRODH equ 0FF4h ;# ">
+"6515
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6515: __asm("TABLAT equ 0FF5h");
+[; <" TABLAT equ 0FF5h ;# ">
+"6524
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6524: __asm("TBLPTR equ 0FF6h");
+[; <" TBLPTR equ 0FF6h ;# ">
+"6531
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6531: __asm("TBLPTRL equ 0FF6h");
+[; <" TBLPTRL equ 0FF6h ;# ">
+"6538
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6538: __asm("TBLPTRH equ 0FF7h");
+[; <" TBLPTRH equ 0FF7h ;# ">
+"6545
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6545: __asm("TBLPTRU equ 0FF8h");
+[; <" TBLPTRU equ 0FF8h ;# ">
+"6554
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6554: __asm("PCLAT equ 0FF9h");
+[; <" PCLAT equ 0FF9h ;# ">
+"6561
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6561: __asm("PC equ 0FF9h");
+[; <" PC equ 0FF9h ;# ">
+"6568
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6568: __asm("PCL equ 0FF9h");
+[; <" PCL equ 0FF9h ;# ">
+"6575
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6575: __asm("PCLATH equ 0FFAh");
+[; <" PCLATH equ 0FFAh ;# ">
+"6582
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6582: __asm("PCLATU equ 0FFBh");
+[; <" PCLATU equ 0FFBh ;# ">
+"6589
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6589: __asm("STKPTR equ 0FFCh");
+[; <" STKPTR equ 0FFCh ;# ">
+"6695
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6695: __asm("TOS equ 0FFDh");
+[; <" TOS equ 0FFDh ;# ">
+"6702
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6702: __asm("TOSL equ 0FFDh");
+[; <" TOSL equ 0FFDh ;# ">
+"6709
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6709: __asm("TOSH equ 0FFEh");
+[; <" TOSH equ 0FFEh ;# ">
+"6716
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\proc\pic18f4620.h: 6716: __asm("TOSU equ 0FFFh");
+[; <" TOSU equ 0FFFh ;# ">
+"13 MAin_scooter.c
+[; ;MAin_scooter.c: 13: ccp_t motor_sp={.ccp1_mode=CCP_PWM_MODE_SELECTED,
+[v _motor_sp `S278 ~T0 @X0 1 e ]
+[i _motor_sp
+:U ..
+:U ..
+-> -> 50 `i `ui
+-> -> 16 `i `uc
+-> -> 16 `i `uc
+-> -> 0 `i `E2861
+:U ..
+:U ..
+-> . `E2275 1 `uc
+-> . `E2285 2 `uc
+..
+..
+. `E2856 2
+-> -> 0 `i `uc
+. `E2866 1
+..
+..
+]
+"24
+[; ;MAin_scooter.c: 24: DC_motor_t motor_1={
+[v _motor_1 `S269 ~T0 @X0 1 e ]
+[i _motor_1
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2285 3 `uc
+-> . `E2275 0 `uc
+-> . `E2267 0 `uc
+..
+:U ..
+-> . `E2285 3 `uc
+-> . `E2275 1 `uc
+-> . `E2267 0 `uc
+..
+..
+..
+..
+]
+"32
+[; ;MAin_scooter.c: 32: DC_motor_t motor_2={
+[v _motor_2 `S269 ~T0 @X0 1 e ]
+[i _motor_2
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2285 3 `uc
+-> . `E2275 2 `uc
+-> . `E2267 0 `uc
+..
+:U ..
+-> . `E2285 3 `uc
+-> . `E2275 3 `uc
+-> . `E2267 0 `uc
+..
+..
+..
+..
+]
+"39
+[; ;MAin_scooter.c: 39:  segment_t myseg ={.Segment_Pins[0].pin=PIN0,
+[v _myseg `S277 ~T0 @X0 1 e ]
+[i _myseg
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2275 0 `uc
+-> . `E2285 2 `uc
+..
+:U ..
+-> . `E2275 4 `uc
+-> . `E2285 2 `uc
+..
+:U ..
+-> . `E2275 2 `uc
+-> . `E2285 2 `uc
+..
+:U ..
+-> . `E2275 3 `uc
+-> . `E2285 2 `uc
+..
+..
+. `E2843 0
+..
+..
+]
+"50
+[; ;MAin_scooter.c: 50: button_t LIGHTS_btn_ON = {
+[v _LIGHTS_btn_ON `S266 ~T0 @X0 1 e ]
+[i _LIGHTS_btn_ON
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2275 7 `uc
+-> . `E2285 1 `uc
+-> . `E2271 1 `uc
+-> . `E2267 0 `uc
+..
+..
+. `E2322 1
+. `E2326 0
+..
+..
+]
+"58
+[; ;MAin_scooter.c: 58: button_t MOTORS_FORWARD = {
+[v _MOTORS_FORWARD `S266 ~T0 @X0 1 e ]
+[i _MOTORS_FORWARD
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2275 6 `uc
+-> . `E2285 3 `uc
+-> . `E2271 1 `uc
+-> . `E2267 0 `uc
+..
+..
+. `E2322 1
+. `E2326 0
+..
+..
+]
+"66
+[; ;MAin_scooter.c: 66: button_t MOTORS_BACKWARD = {
+[v _MOTORS_BACKWARD `S266 ~T0 @X0 1 e ]
+[i _MOTORS_BACKWARD
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2275 4 `uc
+-> . `E2285 0 `uc
+-> . `E2271 1 `uc
+-> . `E2267 0 `uc
+..
+..
+. `E2322 1
+. `E2326 0
+..
+..
+]
+"74
+[; ;MAin_scooter.c: 74: button_t LIGHTS_btn_OFF = {
+[v _LIGHTS_btn_OFF `S266 ~T0 @X0 1 e ]
+[i _LIGHTS_btn_OFF
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2275 6 `uc
+-> . `E2285 1 `uc
+-> . `E2271 1 `uc
+-> . `E2267 0 `uc
+..
+..
+. `E2322 1
+. `E2326 0
+..
+..
+]
+"82
+[; ;MAin_scooter.c: 82:   button_t Speed_up = {
+[v _Speed_up `S266 ~T0 @X0 1 e ]
+[i _Speed_up
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2275 6 `uc
+-> . `E2285 0 `uc
+-> . `E2271 1 `uc
+-> . `E2267 0 `uc
+..
+..
+. `E2322 1
+. `E2326 0
+..
+..
+]
+"90
+[; ;MAin_scooter.c: 90:   button_t Speed_down = {
+[v _Speed_down `S266 ~T0 @X0 1 e ]
+[i _Speed_down
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2275 4 `uc
+-> . `E2285 3 `uc
+-> . `E2271 1 `uc
+-> . `E2267 0 `uc
+..
+..
+. `E2322 1
+. `E2326 0
+..
+..
+]
+"98
+[; ;MAin_scooter.c: 98: led_t LIGHT_LED ={.pin=PIN5,.port_name=PORTD_INDEX};
+[v _LIGHT_LED `S267 ~T0 @X0 1 e ]
+[i _LIGHT_LED
+:U ..
+:U ..
+-> . `E2285 3 `uc
+-> . `E2275 5 `uc
+..
+..
+]
+"99
+[; ;MAin_scooter.c: 99: button_active_t LIGHTS_btn_ON_activ =BUTTON_ACTIVE_LOW;
+[v _LIGHTS_btn_ON_activ `E2326 ~T0 @X0 1 e ]
+[i _LIGHTS_btn_ON_activ
+. `E2326 1
+]
+"100
+[; ;MAin_scooter.c: 100: button_active_t LIGHTS_btn_OFF_activ =BUTTON_ACTIVE_LOW;
+[v _LIGHTS_btn_OFF_activ `E2326 ~T0 @X0 1 e ]
+[i _LIGHTS_btn_OFF_activ
+. `E2326 1
+]
+"101
+[; ;MAin_scooter.c: 101:  button_active_t MOTORS_btn_FORWARD_activ =BUTTON_ACTIVE_LOW;
+[v _MOTORS_btn_FORWARD_activ `E2326 ~T0 @X0 1 e ]
+[i _MOTORS_btn_FORWARD_activ
+. `E2326 1
+]
+"102
+[; ;MAin_scooter.c: 102: button_active_t MOTORS_btn_BACKWARD_activ =BUTTON_ACTIVE_LOW;
+[v _MOTORS_btn_BACKWARD_activ `E2326 ~T0 @X0 1 e ]
+[i _MOTORS_btn_BACKWARD_activ
+. `E2326 1
+]
+"103
+[; ;MAin_scooter.c: 103: button_state_t speed_up_btn_state= BUTTON_RELEASED;
+[v _speed_up_btn_state `E2322 ~T0 @X0 1 e ]
+[i _speed_up_btn_state
+. `E2322 1
+]
+"104
+[; ;MAin_scooter.c: 104: button_state_t speed_down_btn_state= BUTTON_RELEASED;
+[v _speed_down_btn_state `E2322 ~T0 @X0 1 e ]
+[i _speed_down_btn_state
+. `E2322 1
+]
+"105
+[; ;MAin_scooter.c: 105: button_state_t speed_up_btn_state_final= BUTTON_RELEASED;
+[v _speed_up_btn_state_final `E2322 ~T0 @X0 1 e ]
+[i _speed_up_btn_state_final
+. `E2322 1
+]
+"106
+[; ;MAin_scooter.c: 106: button_state_t speed_down_btn_state_final= BUTTON_RELEASED;
+[v _speed_down_btn_state_final `E2322 ~T0 @X0 1 e ]
+[i _speed_down_btn_state_final
+. `E2322 1
+]
+"107
+[; ;MAin_scooter.c: 107:  uint32 MOTORS_FORWARD_button_high_valid =0;
+[v _MOTORS_FORWARD_button_high_valid `ui ~T0 @X0 1 e ]
+[i _MOTORS_FORWARD_button_high_valid
+-> -> 0 `i `ui
+]
+"108
+[; ;MAin_scooter.c: 108:   uint32 speed_up_button_high_valid =0;
+[v _speed_up_button_high_valid `ui ~T0 @X0 1 e ]
+[i _speed_up_button_high_valid
+-> -> 0 `i `ui
+]
+"109
+[; ;MAin_scooter.c: 109:    uint32 speed_down_button_high_valid =0;
+[v _speed_down_button_high_valid `ui ~T0 @X0 1 e ]
+[i _speed_down_button_high_valid
+-> -> 0 `i `ui
+]
+"110
+[; ;MAin_scooter.c: 110:   uint32 MOTORS_BACKWARD_button_high_valid =0;
+[v _MOTORS_BACKWARD_button_high_valid `ui ~T0 @X0 1 e ]
+[i _MOTORS_BACKWARD_button_high_valid
+-> -> 0 `i `ui
+]
+"111
+[; ;MAin_scooter.c: 111:   button_state_t Button_forward_state=BUTTON_RELEASED;
+[v _Button_forward_state `E2322 ~T0 @X0 1 e ]
+[i _Button_forward_state
+. `E2322 1
+]
+"112
+[; ;MAin_scooter.c: 112:   button_state_t Button_Backward_state=BUTTON_RELEASED;
+[v _Button_Backward_state `E2322 ~T0 @X0 1 e ]
+[i _Button_Backward_state
+. `E2322 1
+]
+"113
+[; ;MAin_scooter.c: 113:   uint8 data=0;
+[v _data `uc ~T0 @X0 1 e ]
+[i _data
+-> -> 0 `i `uc
+]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"117
+[; ;MAin_scooter.c: 117: int main ()
+[v _main `(i ~T0 @X0 1 ef ]
+"119
+[; ;MAin_scooter.c: 119: {
+{
+[e :U _main ]
+[f ]
+"120
+[; ;MAin_scooter.c: 120:   system_init();
+[e ( _system_init ..  ]
+"122
+[; ;MAin_scooter.c: 122:     while(1)
+[e :U 284 ]
+"123
+[; ;MAin_scooter.c: 123:     {button_read_state(&Speed_up,&speed_up_btn_state);
+{
+[e ( _button_read_state (2 , -> &U _Speed_up `*CS266 &U _speed_up_btn_state ]
+"124
+[; ;MAin_scooter.c: 124:     button_read_state(&Speed_down,&speed_down_btn_state);
+[e ( _button_read_state (2 , -> &U _Speed_down `*CS266 &U _speed_down_btn_state ]
+"125
+[; ;MAin_scooter.c: 125:     button_read_state(&LIGHTS_btn_OFF,&LIGHTS_btn_OFF_activ);
+[e ( _button_read_state (2 , -> &U _LIGHTS_btn_OFF `*CS266 -> &U _LIGHTS_btn_OFF_activ `*E2322 ]
+"126
+[; ;MAin_scooter.c: 126:      button_read_state(&LIGHTS_btn_ON,&LIGHTS_btn_ON_activ);
+[e ( _button_read_state (2 , -> &U _LIGHTS_btn_ON `*CS266 -> &U _LIGHTS_btn_ON_activ `*E2322 ]
+"127
+[; ;MAin_scooter.c: 127:      button_read_state(&MOTORS_BACKWARD,&MOTORS_btn_BACKWARD_activ);
+[e ( _button_read_state (2 , -> &U _MOTORS_BACKWARD `*CS266 -> &U _MOTORS_btn_BACKWARD_activ `*E2322 ]
+"128
+[; ;MAin_scooter.c: 128:      button_read_state(&MOTORS_FORWARD,&MOTORS_btn_FORWARD_activ);
+[e ( _button_read_state (2 , -> &U _MOTORS_FORWARD `*CS266 -> &U _MOTORS_btn_FORWARD_activ `*E2322 ]
+"129
+[; ;MAin_scooter.c: 129:      if(LIGHTS_btn_ON_activ==BUTTON_ACTIVE_HIGH)
+[e $ ! == -> _LIGHTS_btn_ON_activ `ui -> . `E2326 0 `ui 286  ]
+"130
+[; ;MAin_scooter.c: 130:          {
+{
+"131
+[; ;MAin_scooter.c: 131:              led_turn_on(&LIGHT_LED);
+[e ( _led_turn_on (1 -> &U _LIGHT_LED `*CS267 ]
+"132
+[; ;MAin_scooter.c: 132:          }
+}
+[e :U 286 ]
+"133
+[; ;MAin_scooter.c: 133:   if(LIGHTS_btn_OFF_activ==BUTTON_ACTIVE_HIGH)
+[e $ ! == -> _LIGHTS_btn_OFF_activ `ui -> . `E2326 0 `ui 287  ]
+"134
+[; ;MAin_scooter.c: 134:          {
+{
+"135
+[; ;MAin_scooter.c: 135:              led_turn_off(&LIGHT_LED);
+[e ( _led_turn_off (1 -> &U _LIGHT_LED `*CS267 ]
+"136
+[; ;MAin_scooter.c: 136:          }
+}
+[e :U 287 ]
+"137
+[; ;MAin_scooter.c: 137:      if(MOTORS_btn_BACKWARD_activ==BUTTON_PRESSED)
+[e $ ! == -> _MOTORS_btn_BACKWARD_activ `ui -> . `E2322 0 `ui 288  ]
+"138
+[; ;MAin_scooter.c: 138:      {MOTORS_BACKWARD_button_high_valid++;
+{
+[e ++ _MOTORS_BACKWARD_button_high_valid -> -> 1 `i `ui ]
+"139
+[; ;MAin_scooter.c: 139:      if(MOTORS_BACKWARD_button_high_valid>10)
+[e $ ! > _MOTORS_BACKWARD_button_high_valid -> -> 10 `i `ui 289  ]
+"140
+[; ;MAin_scooter.c: 140:      {
+{
+"141
+[; ;MAin_scooter.c: 141:          Button_Backward_state=BUTTON_PRESSED;
+[e = _Button_Backward_state . `E2322 0 ]
+"142
+[; ;MAin_scooter.c: 142:      }
+}
+[e $U 290  ]
+"144
+[; ;MAin_scooter.c: 144:      else {}
+[e :U 289 ]
+{
+}
+[e :U 290 ]
+"145
+[; ;MAin_scooter.c: 145:     }else if(MOTORS_btn_BACKWARD_activ==BUTTON_RELEASED)
+}
+[e $U 291  ]
+[e :U 288 ]
+[e $ ! == -> _MOTORS_btn_BACKWARD_activ `ui -> . `E2322 1 `ui 292  ]
+"146
+[; ;MAin_scooter.c: 146:      {
+{
+"147
+[; ;MAin_scooter.c: 147:          MOTORS_BACKWARD_button_high_valid=0;
+[e = _MOTORS_BACKWARD_button_high_valid -> -> 0 `i `ui ]
+"148
+[; ;MAin_scooter.c: 148:          Button_Backward_state=BUTTON_RELEASED;
+[e = _Button_Backward_state . `E2322 1 ]
+"149
+[; ;MAin_scooter.c: 149:      }
+}
+[e :U 292 ]
+[e :U 291 ]
+"150
+[; ;MAin_scooter.c: 150:      if(MOTORS_btn_FORWARD_activ==BUTTON_PRESSED)
+[e $ ! == -> _MOTORS_btn_FORWARD_activ `ui -> . `E2322 0 `ui 293  ]
+"151
+[; ;MAin_scooter.c: 151:      {MOTORS_FORWARD_button_high_valid++;
+{
+[e ++ _MOTORS_FORWARD_button_high_valid -> -> 1 `i `ui ]
+"152
+[; ;MAin_scooter.c: 152:      if(MOTORS_FORWARD_button_high_valid>10)
+[e $ ! > _MOTORS_FORWARD_button_high_valid -> -> 10 `i `ui 294  ]
+"153
+[; ;MAin_scooter.c: 153:      {
+{
+"154
+[; ;MAin_scooter.c: 154:          Button_forward_state=BUTTON_PRESSED;
+[e = _Button_forward_state . `E2322 0 ]
+"156
+[; ;MAin_scooter.c: 156:      }}else if(MOTORS_btn_FORWARD_activ==BUTTON_RELEASED)
+}
+[e :U 294 ]
+}
+[e $U 295  ]
+[e :U 293 ]
+[e $ ! == -> _MOTORS_btn_FORWARD_activ `ui -> . `E2322 1 `ui 296  ]
+"157
+[; ;MAin_scooter.c: 157:      {Button_forward_state=BUTTON_RELEASED;
+{
+[e = _Button_forward_state . `E2322 1 ]
+"158
+[; ;MAin_scooter.c: 158:          MOTORS_FORWARD_button_high_valid=0;
+[e = _MOTORS_FORWARD_button_high_valid -> -> 0 `i `ui ]
+"160
+[; ;MAin_scooter.c: 160:      }
+}
+[e :U 296 ]
+[e :U 295 ]
+"161
+[; ;MAin_scooter.c: 161:      if(Button_Backward_state==BUTTON_PRESSED)
+[e $ ! == -> _Button_Backward_state `ui -> . `E2322 0 `ui 297  ]
+"162
+[; ;MAin_scooter.c: 162:      {
+{
+"163
+[; ;MAin_scooter.c: 163:          scooter_forward();
+[e ( _scooter_forward ..  ]
+"164
+[; ;MAin_scooter.c: 164:      }
+}
+[e :U 297 ]
+"165
+[; ;MAin_scooter.c: 165:      if(Button_forward_state==BUTTON_PRESSED)
+[e $ ! == -> _Button_forward_state `ui -> . `E2322 0 `ui 298  ]
+"166
+[; ;MAin_scooter.c: 166:      {
+{
+"167
+[; ;MAin_scooter.c: 167:          scooter_backward();
+[e ( _scooter_backward ..  ]
+"168
+[; ;MAin_scooter.c: 168:      }
+}
+[e :U 298 ]
+"169
+[; ;MAin_scooter.c: 169:       if((Button_Backward_state==BUTTON_RELEASED)&&(Button_forward_state==BUTTON_RELEASED))
+[e $ ! && == -> _Button_Backward_state `ui -> . `E2322 1 `ui == -> _Button_forward_state `ui -> . `E2322 1 `ui 299  ]
+"170
+[; ;MAin_scooter.c: 170:      {
+{
+"171
+[; ;MAin_scooter.c: 171:          scooter_stop();
+[e ( _scooter_stop ..  ]
+"172
+[; ;MAin_scooter.c: 172:      }
+}
+[e :U 299 ]
+"173
+[; ;MAin_scooter.c: 173:      if(speed_up_btn_state_final==BUTTON_PRESSED)
+[e $ ! == -> _speed_up_btn_state_final `ui -> . `E2322 0 `ui 300  ]
+"174
+[; ;MAin_scooter.c: 174:      {if(data<4){
+{
+[e $ ! < -> _data `i -> 4 `i 301  ]
+{
+"175
+[; ;MAin_scooter.c: 175:          data++;}
+[e ++ _data -> -> 1 `i `uc ]
+}
+[e :U 301 ]
+"176
+[; ;MAin_scooter.c: 176:      CCP_PWM_Stop(&motor_sp);
+[e ( _CCP_PWM_Stop (1 -> &U _motor_sp `*CS278 ]
+"177
+[; ;MAin_scooter.c: 177:      CCP_PWM_Start(&motor_sp);
+[e ( _CCP_PWM_Start (1 -> &U _motor_sp `*CS278 ]
+"178
+[; ;MAin_scooter.c: 178:      CCP_PWM_Set_Duty(&motor_sp,data*25);
+[e ( _CCP_PWM_Set_Duty (2 , -> &U _motor_sp `*CS278 -> * -> _data `i -> 25 `i `uc ]
+"180
+[; ;MAin_scooter.c: 180:      speed_up_btn_state_final=BUTTON_RELEASED;
+[e = _speed_up_btn_state_final . `E2322 1 ]
+"181
+[; ;MAin_scooter.c: 181:          segment_write(&myseg,data);
+[e ( _segment_write (2 , -> &U _myseg `*CS277 _data ]
+"182
+[; ;MAin_scooter.c: 182:      }
+}
+[e :U 300 ]
+"183
+[; ;MAin_scooter.c: 183:      if(speed_down_btn_state_final==BUTTON_PRESSED)
+[e $ ! == -> _speed_down_btn_state_final `ui -> . `E2322 0 `ui 302  ]
+"184
+[; ;MAin_scooter.c: 184:      {if(data>0){
+{
+[e $ ! > -> _data `i -> 0 `i 303  ]
+{
+"185
+[; ;MAin_scooter.c: 185:          data--;}
+[e -- _data -> -> 1 `i `uc ]
+}
+[e :U 303 ]
+"186
+[; ;MAin_scooter.c: 186:      CCP_PWM_Stop(&motor_sp);
+[e ( _CCP_PWM_Stop (1 -> &U _motor_sp `*CS278 ]
+"187
+[; ;MAin_scooter.c: 187:      CCP_PWM_Start(&motor_sp);
+[e ( _CCP_PWM_Start (1 -> &U _motor_sp `*CS278 ]
+"188
+[; ;MAin_scooter.c: 188:      CCP_PWM_Set_Duty(&motor_sp,data*25);
+[e ( _CCP_PWM_Set_Duty (2 , -> &U _motor_sp `*CS278 -> * -> _data `i -> 25 `i `uc ]
+"190
+[; ;MAin_scooter.c: 190:      speed_down_btn_state_final=BUTTON_RELEASED;
+[e = _speed_down_btn_state_final . `E2322 1 ]
+"191
+[; ;MAin_scooter.c: 191:          segment_write(&myseg,data);
+[e ( _segment_write (2 , -> &U _myseg `*CS277 _data ]
+"192
+[; ;MAin_scooter.c: 192:      }
+}
+[e :U 302 ]
+"193
+[; ;MAin_scooter.c: 193:      if(speed_up_btn_state==BUTTON_PRESSED)
+[e $ ! == -> _speed_up_btn_state `ui -> . `E2322 0 `ui 304  ]
+"194
+[; ;MAin_scooter.c: 194:      {speed_up_button_high_valid++;
+{
+[e ++ _speed_up_button_high_valid -> -> 1 `i `ui ]
+"195
+[; ;MAin_scooter.c: 195:      if(speed_up_button_high_valid>100)
+[e $ ! > _speed_up_button_high_valid -> -> 100 `i `ui 305  ]
+"196
+[; ;MAin_scooter.c: 196:      {
+{
+"197
+[; ;MAin_scooter.c: 197:          speed_up_btn_state_final=BUTTON_PRESSED;
+[e = _speed_up_btn_state_final . `E2322 0 ]
+"198
+[; ;MAin_scooter.c: 198:           speed_up_button_high_valid=0;
+[e = _speed_up_button_high_valid -> -> 0 `i `ui ]
+"199
+[; ;MAin_scooter.c: 199:      }
+}
+[e :U 305 ]
+"201
+[; ;MAin_scooter.c: 201:     }else if(speed_up_btn_state==BUTTON_RELEASED)
+}
+[e $U 306  ]
+[e :U 304 ]
+[e $ ! == -> _speed_up_btn_state `ui -> . `E2322 1 `ui 307  ]
+"202
+[; ;MAin_scooter.c: 202:      {
+{
+"203
+[; ;MAin_scooter.c: 203:          speed_up_button_high_valid=0;
+[e = _speed_up_button_high_valid -> -> 0 `i `ui ]
+"204
+[; ;MAin_scooter.c: 204:          speed_up_btn_state_final=BUTTON_RELEASED;
+[e = _speed_up_btn_state_final . `E2322 1 ]
+"205
+[; ;MAin_scooter.c: 205:      }
+}
+[e :U 307 ]
+[e :U 306 ]
+"206
+[; ;MAin_scooter.c: 206:      if(speed_down_btn_state==BUTTON_PRESSED)
+[e $ ! == -> _speed_down_btn_state `ui -> . `E2322 0 `ui 308  ]
+"207
+[; ;MAin_scooter.c: 207:      {speed_down_button_high_valid++;
+{
+[e ++ _speed_down_button_high_valid -> -> 1 `i `ui ]
+"208
+[; ;MAin_scooter.c: 208:      if(speed_down_button_high_valid>100)
+[e $ ! > _speed_down_button_high_valid -> -> 100 `i `ui 309  ]
+"209
+[; ;MAin_scooter.c: 209:      {
+{
+"210
+[; ;MAin_scooter.c: 210:          speed_down_btn_state_final=BUTTON_PRESSED;
+[e = _speed_down_btn_state_final . `E2322 0 ]
+"211
+[; ;MAin_scooter.c: 211:          speed_down_button_high_valid=0;
+[e = _speed_down_button_high_valid -> -> 0 `i `ui ]
+"212
+[; ;MAin_scooter.c: 212:      }
+}
+[e :U 309 ]
+"214
+[; ;MAin_scooter.c: 214:     }else if(speed_down_btn_state==BUTTON_RELEASED)
+}
+[e $U 310  ]
+[e :U 308 ]
+[e $ ! == -> _speed_down_btn_state `ui -> . `E2322 1 `ui 311  ]
+"215
+[; ;MAin_scooter.c: 215:      {
+{
+"216
+[; ;MAin_scooter.c: 216:          speed_down_button_high_valid=0;
+[e = _speed_down_button_high_valid -> -> 0 `i `ui ]
+"217
+[; ;MAin_scooter.c: 217:          speed_down_btn_state_final=BUTTON_RELEASED;
+[e = _speed_down_btn_state_final . `E2322 1 ]
+"218
+[; ;MAin_scooter.c: 218:      }
+}
+[e :U 311 ]
+[e :U 310 ]
+"219
+[; ;MAin_scooter.c: 219:     }
+}
+[e :U 283 ]
+[e $U 284  ]
+[e :U 285 ]
+"220
+[; ;MAin_scooter.c: 220:   return 0;
+[e ) -> 0 `i ]
+[e $UE 282  ]
+"222
+[; ;MAin_scooter.c: 222:     }
+[e :UE 282 ]
+}
+"225
+[; ;MAin_scooter.c: 225: void system_init()
+[v _system_init `(v ~T0 @X0 1 ef ]
+"226
+[; ;MAin_scooter.c: 226: { button_initialize(&LIGHTS_btn_ON);
+{
+[e :U _system_init ]
+[f ]
+[e ( _button_initialize (1 -> &U _LIGHTS_btn_ON `*CS266 ]
+"227
+[; ;MAin_scooter.c: 227:     button_initialize(&LIGHTS_btn_OFF);
+[e ( _button_initialize (1 -> &U _LIGHTS_btn_OFF `*CS266 ]
+"228
+[; ;MAin_scooter.c: 228:     button_initialize(&Speed_up);
+[e ( _button_initialize (1 -> &U _Speed_up `*CS266 ]
+"229
+[; ;MAin_scooter.c: 229:     button_initialize(&Speed_down);
+[e ( _button_initialize (1 -> &U _Speed_down `*CS266 ]
+"230
+[; ;MAin_scooter.c: 230:     button_initialize(&MOTORS_FORWARD);
+[e ( _button_initialize (1 -> &U _MOTORS_FORWARD `*CS266 ]
+"231
+[; ;MAin_scooter.c: 231:     button_initialize(&MOTORS_BACKWARD);
+[e ( _button_initialize (1 -> &U _MOTORS_BACKWARD `*CS266 ]
+"232
+[; ;MAin_scooter.c: 232:     led_initialize(&LIGHT_LED);
+[e ( _led_initialize (1 -> &U _LIGHT_LED `*CS267 ]
+"233
+[; ;MAin_scooter.c: 233:     DC_motor_initialize(&motor_1);
+[e ( _DC_motor_initialize (1 -> &U _motor_1 `*CS269 ]
+"234
+[; ;MAin_scooter.c: 234:     DC_motor_initialize(&motor_2);
+[e ( _DC_motor_initialize (1 -> &U _motor_2 `*CS269 ]
+"235
+[; ;MAin_scooter.c: 235:     segment_intilaize(&myseg);
+[e ( _segment_intilaize (1 &U _myseg ]
+"236
+[; ;MAin_scooter.c: 236:     CCP_Init(&motor_sp);
+[e ( _CCP_Init (1 -> &U _motor_sp `*CS278 ]
+"237
+[; ;MAin_scooter.c: 237: }
+[e :UE 312 ]
+}
+"238
+[; ;MAin_scooter.c: 238: void scooter_forward(){
+[v _scooter_forward `(v ~T0 @X0 1 ef ]
+{
+[e :U _scooter_forward ]
+[f ]
+"239
+[; ;MAin_scooter.c: 239:     DC_motor_MOve_clock_Wise(&motor_1);
+[e ( _DC_motor_MOve_clock_Wise (1 -> &U _motor_1 `*CS269 ]
+"240
+[; ;MAin_scooter.c: 240:      DC_motor_MOve_clock_Wise(&motor_2);
+[e ( _DC_motor_MOve_clock_Wise (1 -> &U _motor_2 `*CS269 ]
+"241
+[; ;MAin_scooter.c: 241: }
+[e :UE 313 ]
+}
+"242
+[; ;MAin_scooter.c: 242: void scooter_backward(){
+[v _scooter_backward `(v ~T0 @X0 1 ef ]
+{
+[e :U _scooter_backward ]
+[f ]
+"243
+[; ;MAin_scooter.c: 243:     DC_motor_MOve_Anti_clock_Wise(&motor_1);
+[e ( _DC_motor_MOve_Anti_clock_Wise (1 -> &U _motor_1 `*CS269 ]
+"244
+[; ;MAin_scooter.c: 244:      DC_motor_MOve_Anti_clock_Wise(&motor_2);
+[e ( _DC_motor_MOve_Anti_clock_Wise (1 -> &U _motor_2 `*CS269 ]
+"245
+[; ;MAin_scooter.c: 245: }
+[e :UE 314 ]
+}
+"246
+[; ;MAin_scooter.c: 246: void scooter_stop()
+[v _scooter_stop `(v ~T0 @X0 1 ef ]
+"247
+[; ;MAin_scooter.c: 247: {
+{
+[e :U _scooter_stop ]
+[f ]
+"248
+[; ;MAin_scooter.c: 248:     DC_motor_Stop(&motor_2);
+[e ( _DC_motor_Stop (1 -> &U _motor_2 `*CS269 ]
+"249
+[; ;MAin_scooter.c: 249:       DC_motor_Stop(&motor_1);
+[e ( _DC_motor_Stop (1 -> &U _motor_1 `*CS269 ]
+"250
+[; ;MAin_scooter.c: 250: }
+[e :UE 315 ]
+}
